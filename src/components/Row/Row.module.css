@@ -1,3 +1,8 @@
+.row {
+  margin-left: 20px;
+  color: white;
+}
+
 .rowPosters {
   display: flex;
   overflow-y: hidden;
@@ -17,4 +22,12 @@
 }
 .rowPoster:hover {
   transform: scale(1.08); /*scale to this percentage of size*/
+}
+
+.rowPosterLarge {
+  max-height: 250px;
+}
+
+.rowPosterLarge:hover {
+  transform: scale(1.09);
 }

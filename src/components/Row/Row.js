@@ -4,7 +4,7 @@ import styles from "./Row.module.css";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
-const Row = ({ title, fetchUrl }) => {
+const Row = ({ title, fetchUrl, isLargeRow }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -15,16 +15,20 @@ const Row = ({ title, fetchUrl }) => {
     }
     fetchData();
   }, [fetchUrl]); //Any variable from outside use in useEffect put that in the bracket //To update everytime array movies changes
-  console.log(movies);
+  // console.log(movies);
   return (
-    <div className="row">
+    <div className={styles.row}>
       <h2>{title}</h2>
       <div className={styles.rowPosters}>
         {movies.map((movie) => (
           <img
             key={movie.id}
-            className={styles.rowPoster}
-            src={`${imageBaseUrl}${movie.poster_path}`}
+            className={`${styles.rowPoster} ${
+              isLargeRow && styles.rowPosterLarge
+            }`}
+            src={`${imageBaseUrl}${
+              isLargeRow ? movie.poster_path : movie.backdrop_path
+            }`}
             alt={movie.name}
           />
         ))}
